@@ -1,4 +1,5 @@
-import puppeteer from "puppeteer";
+import puppeteer from 'puppeteer-core'
+import edgeChromium from 'chrome-aws-lambda'
 
 export default async function handler(req, res) {
   try {
@@ -9,12 +10,12 @@ export default async function handler(req, res) {
 
 
     // const LOCAL_CHROME_EXECUTABLE = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-    // const executablePath = await chrome.executablePath || LOCAL_CHROME_EXECUTABLE
+    // const executablePath = await edgeChromium.executablePath || LOCAL_CHROME_EXECUTABLE
 
     const browser = await puppeteer.launch({
-      // args: chrome.args,
+      args: edgeChromium.args,
       headless: true,
-      // executablePath: executablePath,
+      executablePath: edgeChromium.executablePath,
       ignoreDefaultArgs: ['--disable-extensions']
     })
 
