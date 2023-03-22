@@ -8,6 +8,7 @@ export default async function handler(req, res) {
       throw new Error('Not an Instagram link');
     }
 
+
     const LOCAL_CHROME_EXECUTABLE = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
     const executablePath = await edgeChromium.executablePath || LOCAL_CHROME_EXECUTABLE
 
