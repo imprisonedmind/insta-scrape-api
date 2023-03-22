@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@vercel/node": "^2.9.13",
-    "chrome-aws-lambda": "^6.0.0",
-    "puppeteer-core": "^6.0.0"
+    "puppeteer": "^19.7.5"
   }
 }
