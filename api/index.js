@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     const browser = await puppeteer.launch({
       args: edgeChromium.args,
       headless: true,
-      executablePath: edgeChromium.executablePath,
+      executablePath: await edgeChromium.executablePath,
       ignoreDefaultArgs: ['--disable-extensions']
     })
 
