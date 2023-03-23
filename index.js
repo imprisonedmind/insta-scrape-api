@@ -14,7 +14,10 @@ app.post('/scrape-instagram', async (req, res) => {
   }
 
   try {
-    browser = await playwright.launchChromium({headless: true});
+    browser = await playwright.launchChromium({
+      headless: true,
+      args: ["--disable-gpu"]
+    });
     const context = await browser.newContext();
 
     const page = await context.newPage()
