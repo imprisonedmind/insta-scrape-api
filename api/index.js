@@ -24,7 +24,6 @@ export default async function handler(req, res) {
         el.innerText);
 
     await browser.close();
-
     res.status(200).json({imageUrl, description});
   } catch (error) {
     console.error(error);
