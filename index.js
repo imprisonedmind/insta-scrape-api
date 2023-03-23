@@ -4,14 +4,14 @@ const playwright = require('playwright-aws-lambda');
 const app = express();
 
 app.post('/instagram', async (req, res) => {
-  const link = req.query.link;
-
-  if (!link.includes('instagram')) {
-    return res.status(400).json({ error: 'Not an Instagram link' });
-  }
-
   try {
-    const browser = await playwright.launchChromium({ headless: true });
+    const link = req.query.link;
+
+    if (!link.includes('instagram')) {
+      return res.status(400).json({error: 'Not an Instagram link'});
+    }
+
+    const browser = await playwright.launchChromium({headless: true});
     const context = await browser.newContext();
     const page = await context.newPage();
     page.setDefaultTimeout(60000);
@@ -29,10 +29,10 @@ app.post('/instagram', async (req, res) => {
 
     await browser.close();
 
-    return res.status(200).json({ imageUrl, descText });
+    return res.status(200).json({imageUrl, descText});
   } catch (error) {
     console.error(error);
-    return res.status(400).json({ error: error.message });
+    return res.status(400).json({error: error.message});
   }
 });
 
