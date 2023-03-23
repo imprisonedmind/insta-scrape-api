@@ -5,7 +5,7 @@ const app = express();
 
 app.post('/instagram', async (req, res) => {
   try {
-    const link = req.get('link');
+    const link = req.body.link;
 
     if (!link.includes('instagram')) {
       return res.status(400).json({error: 'Not an Instagram link'});
