@@ -18,7 +18,7 @@ app.post('/scrape-instagram', async (req, res) => {
     const context = await browser.newContext();
 
     const page = await context.newPage()
-    await page.goto(link);
+    await page.goto(link,{waitUntil: "networkidle"});
 
     const imgClass = 'img.x5yr21d.xu96u03.x10l6tqk.x13vifvy.x87ps6o.xh8yej3'
     const descClass = 'h1._aacl._aaco._aacu._aacx._aad7._aade'
@@ -26,7 +26,7 @@ app.post('/scrape-instagram', async (req, res) => {
     const image = await page.waitForSelector(imgClass)
     const imageUrl = await image.getAttribute('src')
     const desc = await page.waitForSelector(descClass)
-    const descText = desc.innerText()
+    const descText = await desc.innerText()
 
     await browser.close();
     res.status(200).json({imageUrl, descText});
