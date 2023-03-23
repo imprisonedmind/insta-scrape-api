@@ -1,5 +1,5 @@
-import puppeteer from 'puppeteer-core'
-import edgeChromium from 'chrome-aws-lambda'
+import {chromium} from "playwright-core";
+import awsChromium from "chrome-aws-lambda"
 
 export default async function handler(req, res) {
   try {
@@ -8,16 +8,10 @@ export default async function handler(req, res) {
       throw new Error('Not an Instagram link');
     }
 
-
-    const LOCAL_CHROME_EXECUTABLE = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-    const executablePath = await edgeChromium.executablePath || LOCAL_CHROME_EXECUTABLE
-
-    const browser = await puppeteer.launch({
-      args: edgeChromium.args,
-      headless: true,
-      executablePath,
-      ignoreDefaultArgs: ['--disable-extensions']
-    })
+    const browser = await chromium.launch({
+      headless: false,
+      executablePath: awsChromium.executablePath,
+    });
 
     const page = await browser.newPage();
     await page.goto(link, {waitUntil: 'networkidle0'});
