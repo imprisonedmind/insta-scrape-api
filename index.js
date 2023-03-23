@@ -1,7 +1,9 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const playwright = require('playwright-aws-lambda');
 
 const app = express();
+app.use(bodyParser.json());
 
 app.post('/instagram', async (req, res) => {
   try {
