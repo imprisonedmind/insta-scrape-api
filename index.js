@@ -18,7 +18,7 @@ app.post('/scrape-instagram', async (req, res) => {
     const context = await browser.newContext();
 
     const page = await context.newPage()
-    await page.setDefaultTimeout(60000);
+    await page.setDefaultTimeout(120000);
     await page.goto(link, {waitUntil: "networkidle"});
 
     const imgClass = 'img.x5yr21d.xu96u03.x10l6tqk.x13vifvy.x87ps6o.xh8yej3'
