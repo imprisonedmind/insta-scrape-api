@@ -16,7 +16,7 @@ app.post('/instagram', async (req, res) => {
     const browser = await playwright.launchChromium({headless: true});
     const context = await browser.newContext();
     const page = await context.newPage();
-    // page.setDefaultTimeout(60000);
+    page.setDefaultTimeout(240000);
 
     await page.goto(link);
 
