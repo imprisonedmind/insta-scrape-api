@@ -3,12 +3,12 @@ const playwright = require('playwright-aws-lambda');
 export default async function handler(req, res) {
   let browser = null;
 
-  try {
-    const link = req.body.link;
-    if (!link.includes('instagram')) {
-      throw new Error('Not an Instagram link');
-    }
+  const link = req.body.link;
+  if (!link.includes('instagram')) {
+    throw new Error('Not an Instagram link');
+  }
 
+  try {
     browser = await playwright.launchChromium({headless: true});
     const context = await browser.newContext();
 
