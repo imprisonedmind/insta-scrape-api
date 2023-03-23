@@ -3,7 +3,7 @@ const playwright = require('playwright-aws-lambda');
 
 const app = express();
 
-app.get('/instagram', async (req, res) => {
+app.post('/instagram', async (req, res) => {
   const link = req.query.link;
 
   if (!link.includes('instagram')) {
