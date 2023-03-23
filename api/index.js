@@ -1,19 +1,18 @@
-import {chromium} from "playwright-core";
-import awsChromium from "chrome-aws-lambda"
+const playwright = require('playwright-aws-lambda');
 
 export default async function handler(req, res) {
+  let browser = null;
+
   try {
     const link = req.body.link;
     if (!link.includes('instagram')) {
       throw new Error('Not an Instagram link');
     }
 
-    const browser = await chromium.launch({
-      headless: false,
-      executablePath: awsChromium.executablePath,
-    });
+    browser = await playwright.launchChromium({headless: true});
+    const context = await browser.newContext();
 
-    const page = await browser.newPage();
+    const page = await context.newPage()
     await page.goto(link, {waitUntil: 'networkidle0'});
 
     const imgClass = 'img.x5yr21d.xu96u03.x10l6tqk.x13vifvy.x87ps6o.xh8yej3'
