@@ -1,5 +1,5 @@
 const express = require('express');
-const playwright = require('playwright-aws-lambda');
+const playwright = require('playwright')
 
 const app = express();
 
@@ -14,10 +14,7 @@ app.post('/scrape-instagram', async (req, res) => {
   }
 
   try {
-    browser = await playwright.launchChromium({
-      headless: true,
-      args: ["--disable-gpu"]
-    });
+    browser = await playwright.chromium.launch({headless: true,});
     const context = await browser.newContext();
 
     const page = await context.newPage()
