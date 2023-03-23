@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     const context = await browser.newContext();
 
     const page = await context.newPage()
-    await page.goto(link, {waitUntil: "load"});
+    await page.goto(link, {waitUntil: "networkidle"});
 
     const imgClass = 'img.x5yr21d.xu96u03.x10l6tqk.x13vifvy.x87ps6o.xh8yej3'
     const descClass = 'h1._aacl._aaco._aacu._aacx._aad7._aade'
