@@ -1,13 +1,11 @@
-const puppeteer = require("puppeteer-core");
+const playwright = require("playwright-core");
 const chromium = require("@sparticuz/chromium");
 
 exports.handler = async (event, context) => {
-  const browser = await puppeteer.launch({
+  const browser = await playwright.chromium.launch({
     args: chromium.args,
-    defaultViewport: chromium.defaultViewport,
     executablePath: await chromium.executablePath(),
     headless: chromium.headless,
-    ignoreHTTPSErrors: true,
   });
 
   const page = await browser.newPage();

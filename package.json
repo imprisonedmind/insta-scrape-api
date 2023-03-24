@@ -7,7 +7,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "puppeteer-core": "^19.7.5"
+    "playwright-core": "^1.32.0"
   },
   "devDependencies": {
     "@sparticuz/chromium": "^111.0.0"
